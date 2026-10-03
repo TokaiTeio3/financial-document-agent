@@ -1,0 +1,7 @@
+openai==2.43.0
+pyyaml==6.0.2
+opencc-python-reimplemented==0.1.7
+pymupdf4llm==1.27.2.3
+reportlab==4.4.9
+pypdf==6.10.0
+pdfplumber==0.11.9

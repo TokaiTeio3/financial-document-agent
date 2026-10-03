@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="基于 LangGraph、BM25 与领域工具的金融文档问答 Agent">
+  <title>Ledger · 金融文档 Agent</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Ledger 首页">
+        <span class="brand-mark">L</span>
+        <span>LEDGER <small>FINANCIAL QA</small></span>
+      </a>
+      <div class="system-state"><span class="pulse"></span><span id="modeLabel">正在连接</span></div>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="heroTitle">
+        <p class="eyebrow">EVIDENCE-FIRST AGENT</p>
+        <h1 id="heroTitle">从文档里，<br><em>找到答案。</em></h1>
+        <p class="hero-copy">不使用向量模型。Agent 会选择领域检索技能，以 BM25 与关键词锚点定位原文，必要时调用计算工具，再给出带出处的结构化回答。</p>
+        <div class="capabilities" aria-label="系统能力">
+          <span>LANGGRAPH</span><span>5 DOMAIN SKILLS</span><span>TRACEABLE TOOLS</span>
+        </div>
+      </section>
+
+      <section class="workspace" aria-label="问答工作区">
+        <form id="questionForm" class="ask-panel">
+          <div class="ask-heading">
+            <label for="questionInput">输入金融问题</label>
+            <span id="charCount">0 / 4000</span>
+          </div>
+          <textarea id="questionInput" name="question" rows="4" maxlength="4000" required placeholder="例如：比亚迪 2024 年营业收入和归母净利润分别是多少？"></textarea>
+          <div class="ask-actions">
+            <p>Enter 换行 · Ctrl/⌘ + Enter 发送</p>
+            <button id="submitButton" type="submit"><span>运行 Agent</span><span aria-hidden="true">↗</span></button>
+          </div>
+        </form>
+
+        <div class="examples" aria-label="示例问题">
+          <button type="button" data-question="比亚迪 2024 年营业收入和归属于上市公司股东的净利润分别是多少？">财报指标查询</button>
+          <button type="button" data-question="保险合同中关于等待期和免责条款是如何规定的？">保险条款定位</button>
+          <button type="button" data-question="监管文件对信息披露义务有哪些要求？">监管规则检索</button>
+        </div>
+
+        <section id="runPanel" class="run-panel" hidden aria-live="polite">
+          <div class="run-header">
+            <div><p class="eyebrow">LIVE EXECUTION</p><h2>Agent 执行轨迹</h2></div>
+            <span id="runStatus" class="run-status">准备中</span>
+          </div>
+          <div class="token-panel" aria-label="模型 Token 用量">
+            <div class="token-title"><span>MODEL TOKENS</span><strong id="tokenGrandTotal">0</strong></div>
+            <div id="tokenModels" class="token-models"><span class="token-empty">等待模型调用</span></div>
+          </div>
+          <div id="traceList" class="trace-list"></div>
+        </section>
+
+        <section id="answerPanel" class="answer-panel" hidden aria-live="polite">
+          <div class="answer-kicker"><span>FINAL ANSWER</span><span id="confidenceBadge"></span></div>
+          <h2>回答</h2>
+          <p id="answerText" class="answer-text"></p>
+          <div id="keyPointsSection" hidden><h3>关键内容</h3><ol id="keyPoints"></ol></div>
+          <div id="citationsSection" hidden><h3>证据来源</h3><div id="citations" class="citations"></div></div>
+          <div id="limitationsSection" class="limitations" hidden><h3>限制说明</h3><ul id="limitations"></ul></div>
+        </section>
+
+        <section id="errorPanel" class="error-panel" hidden role="alert"></section>
+      </section>
+    </main>
+
+    <footer><span>LOCAL DOCUMENTS · NO EMBEDDINGS</span><span>LANGGRAPH AGENT / 0.1</span></footer>
+  </div>
+  <script src="/app.js" defer></script>
+</body>
+</html>

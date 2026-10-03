@@ -1,0 +1,245 @@
+model:
+  name: "qwen3.7-max-2026-06-08"
+  fallback_name: "qwen3.7-max-2026-06-08"
+  api_base: "https://dashscope.aliyuncs.com/compatible-mode/v1"
+  temperature: 0.0
+  top_p: 1.0
+  seed: 20260726
+  enable_thinking: false
+  timeout_seconds: 180
+  max_retries: 2
+
+profiles:
+  accuracy:
+    evidence_budget_controller: active
+    evidence_sufficiency_threshold: 0.62
+    query_max_tokens: 1200
+    answer_max_tokens: 1800
+    repair_max_tokens: 1600
+    max_docs: 8
+    retrieval_top_k: 36
+    prompt_pages: 24
+    page_chars: 2200
+    option_top_k: 6
+    verify: true
+    option_adjudication: true
+    adjudication_top_k: 14
+    adjudication_page_chars: 1800
+    python_tool: true
+    llm_query_planner: true
+    token_budget: 0
+  long:
+    query_max_tokens: 1600
+    answer_max_tokens: 8192
+    repair_max_tokens: 4096
+    max_docs: 8
+    retrieval_top_k: 26
+    prompt_pages: 22
+    page_chars: 2600
+    option_top_k: 5
+    verify: true
+    option_adjudication: false
+    python_tool: true
+    llm_query_planner: true
+    token_budget: 0
+  fast:
+    query_max_tokens: 900
+    answer_max_tokens: 4096
+    repair_max_tokens: 2048
+    max_docs: 5
+    retrieval_top_k: 16
+    prompt_pages: 12
+    page_chars: 1500
+    option_top_k: 3
+    verify: false
+    option_adjudication: false
+    python_tool: true
+    llm_query_planner: false
+    token_budget: 0
+  submission:
+    # 影子模式记录逐选项建议，但不干扰已调优的正式路由。
+    # 只有完成消融验证后才切换为主动模式。
+    evidence_budget_controller: shadow
+    evidence_sufficiency_threshold: 0.62
+    query_max_tokens: 500
+    answer_max_tokens: 750
+    repair_max_tokens: 650
+    max_docs: 8
+    retrieval_top_k: 24
+    prompt_pages: 9
+    page_chars: 800
+    option_top_k: 4
+    verify: false
+    option_adjudication: false
+    compact_joint_answer: true
+    compact_option_adjudication: true
+    compact_joint_domains:
+      - financial_contracts
+      - insurance
+      - regulatory
+      - research
+    compact_joint_unknown_fallback_domains:
+      - financial_contracts
+    option_entity_binding_domains:
+      - insurance
+      - financial_reports
+      - financial_contracts
+      - research
+    compact_option_hits: 2
+    compact_excerpt_chars: 750
+    compact_research_option_hits: 4
+    compact_research_excerpt_chars: 240
+    compact_research_bridge_hits: 8
+    compact_research_bridge_excerpt_chars: 500
+    compact_financial_option_hits: 3
+    compact_financial_excerpt_chars: 550
+    compact_joint_review_excerpt_chars: 500
+    compact_contract_option_hits: 3
+    compact_contract_excerpt_chars: 850
+    compact_financial_bridge_hits: 12
+    compact_financial_bridge_excerpt_chars: 600
+    compact_insurance_option_hits: 4
+    compact_joint_insurance_option_hits: 4
+    compact_insurance_excerpt_chars: 650
+    compact_regulatory_option_hits: 3
+    compact_joint_regulatory_option_hits: 3
+    compact_regulatory_excerpt_chars: 475
+    compact_option_max_tokens: 320
+    compact_uncertain_joint_review: true
+    compact_joint_review_domains: []
+    compact_joint_review_max_tokens: 500
+    compact_calc_hits: 6
+    compact_calc_excerpt_chars: 1100
+    calculation_prompt_chars: 800
+    calculation_prompt_hits: 8
+    calculation_table_anchor_limit: 8
+    calculation_table_anchor_context_chars: 200
+    calculation_table_anchor_row_chars: 400
+    insurance_calculation_prompt_chars: 1900
+    insurance_calculation_prompt_hits: 11
+    python_tool: true
+    python_tool_domains: []
+    compact_calc_direct: true
+    compact_calc_reasoning_call: false
+    compact_calc_reasoning_max_tokens: 260
+    llm_query_planner: true
+    llm_query_planner_domains:
+      - research
+    use_prior_api_answer_memory: false
+    prior_api_reasoning_chars: 1200
+    # 预留保护会对并发进行中的调用采用保守 Prompt 字符数估计。
+    # 竞赛硬性检查仍以下方实测 submission_token_limit 为准。
+    token_budget: 1030000
+    submission_token_limit: 1000000
+  compressed:
+    evidence_budget_controller: shadow
+    evidence_sufficiency_threshold: 0.62
+    query_max_tokens: 320
+    answer_max_tokens: 700
+    repair_max_tokens: 420
+    max_docs: 8
+    retrieval_top_k: 20
+    prompt_pages: 7
+    page_chars: 600
+    option_top_k: 3
+    verify: false
+    option_adjudication: false
+    compact_joint_answer: true
+    compact_option_adjudication: true
+    compact_domain_scoped_prompt: true
+    compact_joint_domains:
+      - financial_contracts
+      - insurance
+      - regulatory
+      - research
+    force_joint_domains:
+      - financial_reports
+    compact_joint_unknown_fallback_domains:
+      - financial_reports
+      - financial_contracts
+    option_entity_binding_domains:
+      - insurance
+      - financial_reports
+      - financial_contracts
+      - research
+    compact_option_hits: 2
+    compact_excerpt_chars: 450
+    compact_research_option_hits: 2
+    compact_research_excerpt_chars: 160
+    compact_research_bridge_hits: 5
+    compact_research_bridge_excerpt_chars: 360
+    compact_financial_option_hits: 3
+    compact_financial_excerpt_chars: 550
+    compact_joint_review_excerpt_chars: 360
+    compact_contract_option_hits: 3
+    compact_contract_excerpt_chars: 600
+    contract_quantitative_joint: true
+    compact_financial_bridge_hits: 6
+    compact_financial_bridge_excerpt_chars: 320
+    compact_bridge_wide_on_multiple_unknowns: false
+    compact_bridge_wide_domains: []
+    compact_bridge_max_tokens: 360
+    compact_insurance_option_hits: 3
+    compact_joint_insurance_option_hits: 2
+    compact_insurance_excerpt_chars: 260
+    compact_insurance_bridge_hits: 8
+    compact_insurance_bridge_excerpt_chars: 500
+    compact_insurance_bridge_max_tokens: 500
+    compact_regulatory_option_hits: 2
+    compact_joint_regulatory_option_hits: 2
+    compact_regulatory_excerpt_chars: 260
+    compact_option_max_tokens: 240
+    compact_uncertain_joint_review: false
+    compact_joint_review_domains: []
+    compact_joint_review_max_tokens: 320
+    compact_calc_hits: 6
+    compact_calc_excerpt_chars: 1100
+    calculation_prompt_chars: 800
+    calculation_prompt_hits: 8
+    calculation_table_anchor_limit: 8
+    calculation_table_anchor_context_chars: 200
+    calculation_table_anchor_row_chars: 400
+    insurance_calculation_prompt_chars: 2100
+    insurance_calculation_prompt_hits: 12
+    regulatory_calculation_prompt_chars: 950
+    regulatory_calculation_prompt_hits: 10
+    python_tool: true
+    python_tool_domains: []
+    skip_compact_calc_domains: []
+    max_calculation_prompt_chars: 0
+    max_research_calculation_prompt_chars: 16000
+    calculation_structured_anchor_retry: false
+    compact_calc_direct: true
+    compact_calc_reasoning_max_tokens: 210
+    llm_query_planner: false
+    llm_query_planner_domains: []
+    use_prior_api_answer_memory: false
+    prior_api_reasoning_chars: 800
+    # 仅用于后处理：追加已存在于计费 API Prompt 中的精确引用证据子串。
+    # 这使 E1/E2 reasoning 可审计，且不增加 API 调用或 Token 用量。
+    reasoning_expand_prompt_evidence: false
+    reasoning_evidence_max_refs: 4
+    reasoning_evidence_chars_per_ref: 220
+    token_budget: 800000
+    submission_token_limit: 600000
+
+data:
+  questions_dir: "data/raw_dataset/questions"
+  docs_dir: "data/processed_pymupdf4llm_merged_normalized"
+  output_dir: "output"
+  runtime_index_dir: "runtime_index"
+  prior_api_answer_memory: "runtime_index/prior_api_answer_memory.json"
+
+retrieval:
+  chunk_size: 900
+  chunk_overlap: 180
+  bm25_weight: 0.55
+  keyword_weight: 0.45
+  adjacent_pages: 1
+
+agent:
+  runtime_entity_memory: false
+  cross_round_memory: false
+  max_reactions: 2
+  doc_discovery: true
+  no_embedding: true

@@ -1,0 +1,48 @@
+{
+  "answers": [
+    {
+      "qid": "demo_fc_001",
+      "domain": "financial_contracts",
+      "question": "根据《示例债券合同》，债券期限是多少？",
+      "type": "单选题",
+      "options": {"A": "三年", "B": "五年"},
+      "answer": "A",
+      "source_materials": [{"file": "sample.md", "pages": [1]}]
+    },
+    {
+      "qid": "demo_fin_001",
+      "domain": "financial_reports",
+      "question": "示例文件的营业收入是多少？",
+      "type": "计算题",
+      "answer": "100",
+      "source_materials": [{"file": "sample.md", "pages": [1]}]
+    },
+    {
+      "qid": "demo_ins_001",
+      "domain": "insurance",
+      "question": "安心保险的等待期是哪一个？",
+      "type": "单选题",
+      "options": {"A": "九十日", "B": "三十日"},
+      "answer": "A",
+      "source_materials": [{"file": "policy.md", "pages": [3]}]
+    },
+    {
+      "qid": "demo_reg_001",
+      "domain": "regulatory",
+      "question": "示例监管规定要求如何披露信息？",
+      "type": "多选题",
+      "options": {"A": "真实", "B": "准确", "C": "完整", "D": "隐瞒"},
+      "answer": "ABC",
+      "source_materials": [{"file": "sample.md", "pages": [1]}]
+    },
+    {
+      "qid": "demo_res_001",
+      "domain": "research",
+      "question": "示例研究报告对行业需求的判断是什么？",
+      "type": "单选题",
+      "options": {"A": "保持增长", "B": "明显下降"},
+      "answer": "A",
+      "source_materials": [{"file": "sample.md", "pages": [1]}]
+    }
+  ]
+}

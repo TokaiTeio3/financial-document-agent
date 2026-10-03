@@ -1,0 +1,30 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "financial-qa-agent"
+version = "0.1.0"
+description = "A minimal, observable LangGraph agent for Chinese financial document QA"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "fastapi==0.142.2",
+  "langchain==1.4.3",
+  "langchain-openai==1.6.7",
+  "langgraph==1.2.12",
+  "pydantic==2.13.5",
+  "python-dotenv==1.2.4",
+  "uvicorn[standard]==0.54.0",
+]
+
+[project.optional-dependencies]
+dev = ["httpx==0.28.1", "pytest==9.1.1", "pytest-asyncio==1.4.0"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["app"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+addopts = "-q"
