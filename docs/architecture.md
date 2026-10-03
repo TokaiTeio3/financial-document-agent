@@ -1,6 +1,6 @@
-# 重构版：沿着一次请求读代码
+# Agent 执行流程与状态设计
 
-以下路径相对于 `financial_qa_agent/`。这份说明描述当前代码，不描述还没实现的生产架构。
+以下路径相对于 `financial_qa_agent/`，说明赛后 LangGraph 封装的执行流程、状态设计与实现边界。
 
 ## 从接口到状态图
 
@@ -72,4 +72,4 @@ Flash 压缩输出 `SubQuestionResult`：子问题、`answer_hint`、是否可�
 
 前端 `app/web/static/app.js` 读取 NDJSON，展示 `trace`、`token_usage`、`answer`、`error` 和结束状态。模型调用的输入、输出 Token 分别汇总到模型名；并行 worker 的轨迹按节点完成情况到达，不保证是严格串行“思考顺序”。现在是节点完成后更新，不是模型内部逐 Token 的实时进度。
 
-`app/tools/calculator.py` 定义 `calculate_finance`，基于 AST 算术执行。它在工具映射中，但 worker 只绑定检索工具，finalize 也没有计算工具调用。因此计算主节点属于后续工作，不能用竞赛版的计算能力替当前 Demo 背书。
+`app/tools/calculator.py` 定义 `calculate_finance`，基于 AST 算术执行。它在工具映射中，但 worker 只绑定检索工具，finalize 也没有计算工具调用。自动计算节点尚未接入当前交互流程。

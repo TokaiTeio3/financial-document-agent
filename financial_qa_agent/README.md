@@ -1,8 +1,8 @@
-# Ledger：金融文档问答 Agent
+# 金融文档问答 Agent：LangGraph 封装与交互工程
 
-这是赛后从零搭建的最小 Agent 工程，不复用竞赛版的代码、规则或索引。公开版默认读取 `tests/fixtures/corpus` 中的合成微型文档；真实数据通过 `FINQA_DATA_ROOT` 显式配置。项目背景和两版差异见 [仓库首页](../README.md)。
+本目录提供金融文档问答 Agent 的 LangGraph 封装、领域检索工具与交互前端。默认读取 `tests/fixtures/corpus` 中的合成文档；真实数据通过 `FINQA_DATA_ROOT` 显式配置。项目背景、比赛效果与技术方案见 [仓库首页](../README.md)。
 
-核心约束：
+实现要点：
 
 - 不使用 embedding 或向量数据库，检索采用 BM25、关键词锚点和标题/年份/短语加权。
 - Max 模型负责把原始问题拆成 1～6 个可由单次检索回答的原子子问题。
@@ -125,4 +125,4 @@ $env:FINQA_DEMO_MODE="false"
 .\.venv\Scripts\python.exe scripts\evaluate_ground_truth.py --mode agent --ground-truth /path/to/authorized_questions.json --qid your-question-id
 ```
 
-流程验收标准为题目完成 `prepare → decompose → worker → finalize → structured answer` 且无运行错误。准确率只作为可选参考，不属于当前版本验收条件。
+流程验收标准为题目完成 `prepare → decompose → worker → finalize → structured answer` 且无运行错误。合成演示用于验证运行流程，真实模型准确率需另行评测。

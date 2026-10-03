@@ -18,8 +18,8 @@
 ## 接入自己的数据
 
 1. 仅使用你有权处理的文档；遵守数据提供方的条款和个人信息要求。
-2. 竞赛版 `run_preprocess.py` 将原始数据转换为保留页码的 Markdown，使用方式见 [复现说明](competition-reproduction.md)。
-3. 重构版设置 `FINQA_DATA_ROOT` 指向标准化后的目录，五个领域使用下列目录名：
+2. `run_preprocess.py` 将原始数据转换为保留页码的 Markdown，使用方式见 [运行说明](competition-reproduction.md)。
+3. 交互工程设置 `FINQA_DATA_ROOT` 指向标准化后的目录，五个领域使用下列目录名：
 
 ```text
 <data_root>/

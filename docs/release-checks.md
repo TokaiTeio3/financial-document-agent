@@ -1,15 +1,15 @@
-# 公开版验证记录
+# 工程验证记录
 
 本记录针对首次公开整理版，不是重新参加比赛的评测结果。真实题库与付费模型调用没有纳入这次公开验收。
 
 ## 本地验证
 
-Windows / Python 3.13.9，分别建立全新虚拟环境，安装竞赛版 `requirements.txt` 与重构版 `.[dev]`，不复用原工程安装目录。
+Windows / Python 3.13.9，分别建立全新虚拟环境，安装问答复现模块的 `requirements.txt` 与交互工程的 `.[dev]`，不复用原工程安装目录。
 
 | 检查 | 结果 |
 |---|---|
-| 竞赛版 unittest | 91 项通过 |
-| 重构版 pytest | 19 项通过 |
+| 问答与复现模块 unittest | 91 项通过 |
+| Agent 与交互模块 pytest | 19 项通过 |
 | FastAPI 本地 HTTP 流 | 返回四个主节点、检索引用、答案和 done |
 | 前端 JavaScript 语法 | node --check 通过 |
 | 五领域合成样例索引 | 5 个 chunk，分别保留来源与页码 |
@@ -18,7 +18,7 @@ Windows / Python 3.13.9，分别建立全新虚拟环境，安装竞赛版 `requ
 | 发布文件检查 | 未检出脚本规则覆盖的密钥或私有产物 |
 | Git whitespace 检查 | 通过 |
 
-重构版直接依赖按本次安装测试的版本固定在 `pyproject.toml`，传递依赖未完全锁定。CI 使用 Linux / Python 3.11 执行相同的离线回归和发布安全检查；以 GitHub Actions 的实际状态为准。
+交互工程的直接依赖按本次安装测试的版本固定在 `pyproject.toml`，传递依赖未完全锁定。CI 使用 Linux / Python 3.11 执行相同的离线回归和发布安全检查；以 GitHub Actions 的实际状态为准。
 
 ## 公开前处理
 
