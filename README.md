@@ -7,6 +7,7 @@
 ## 比赛效果
 
 竞赛 B 榜得分 **93.11**，排名 **18**，榜单最高分 **93.50**。
+<img width="1144" height="271" alt="image" src="https://github.com/user-attachments/assets/77e21168-183e-46e8-8ed0-257795661cc1" />
 
 提交报告记录的一次 100 题全量运行结果如下：
 
