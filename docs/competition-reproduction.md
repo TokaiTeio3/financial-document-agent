@@ -11,7 +11,7 @@
 
 ## 1. 一次性答案生成
 
-赛事验收使用 `generate_answer.sh`。该脚本从指定官方输入目录或 ZIP 开始，依次执行预处理和完整 B 榜推理，不读取或拼接仓库中已有的 `answer.csv`。
+赛事验收使用 `generate_answer.sh`。该脚本从指定官方输入目录或 ZIP 开始，依次执行预处理和完整 B 榜推理。
 
 ```bash
 export DASHSCOPE_API_KEY="your-api-key"
